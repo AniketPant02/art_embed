@@ -6,11 +6,13 @@ import numpy as np
 import base64
 import dash_bootstrap_components as dbc
 import plotly.express as px
+from sklearn import preprocessing
 
 # Load numpy arrays
-embeddings = np.load('embeddings.npy')
-labels = np.load('labels.npy')
-filenames = np.load('filenames.npy')
+embeddings = np.load('results/embeddings.npy')
+filenames = np.load('results/filenames.npy')
+labels = [x.split("/")[2] for x in filenames]
+labels = preprocessing.LabelEncoder().fit_transform(labels)
 
 # Create a DataFrame from the numpy arrays
 df = pd.DataFrame({
@@ -64,7 +66,6 @@ df['class_name'] = df['label'].map(classes_map)
 # Create the Dash app
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css", dbc.themes.LUX]
 app = Dash(__name__, external_stylesheets=external_stylesheets)
-app.title = 'Art Embedder - Aniket Pant'
 
 app.layout = html.Div([
     html.Div([
@@ -171,4 +172,4 @@ def update_filename(clickData):
         return 'Selected image: {}'.format(filename)
 
 if __name__ == '__main__':
-    app.run(debug=False, host= '0.0.0.0', port = 8050)
+    app.run(debug=False, host= '0.0.0.0', port = 8080)
