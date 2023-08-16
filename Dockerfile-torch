@@ -1,0 +1,20 @@
+# We start from the official PyTorch image for simplicity and full compatibility
+FROM pytorch/pytorch:latest
+
+# We'll add Python and pip to our container
+RUN apt-get update && apt-get install -y python3-pip
+
+# We'll upgrade pip
+RUN pip install --upgrade pip
+
+# Installing Jupyter Lab
+RUN pip install jupyterlab
+
+# Creating a working directory inside the container
+WORKDIR /workspace
+
+# Jupyter listens port:8888 by default
+EXPOSE 8888
+
+# Run jupyter lab on container start
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--no-browser", "--NotebookApp.token=''"]

@@ -1,0 +1,5 @@
+wikiart/
+__pycache__/
+wikiart.zip
+.ipynb_checkpoints/
+download.sh
