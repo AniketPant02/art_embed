@@ -25,3 +25,4 @@ urllib3==2.0.4
 Werkzeug==2.2.3                                                                                                                                                    
 zipp==3.16.2
 pandas
+scikit-learn

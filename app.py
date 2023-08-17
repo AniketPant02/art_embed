@@ -66,6 +66,7 @@ df['class_name'] = df['label'].map(classes_map)
 # Create the Dash app
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css", dbc.themes.LUX]
 app = Dash(__name__, external_stylesheets=external_stylesheets)
+app.title = "Art Embedder - Aniket Pant"
 
 app.layout = html.Div([
     html.Div([
@@ -73,12 +74,11 @@ app.layout = html.Div([
             [
                 html.H1("WikiArt Embedder", className="display-3"),
                 html.P(
-                    "Using a ConvVAE + UMAP to embed art in low dimensional spaces. 20,000 images are embedded in RGB space.",
+                    "Using a ConvVAE + UMAP to embed art in low dimensional spaces. 2,600 images are embedded in RGB space.",
                     className="lead",
                 ),
-                html.P(
-                    "Author: Aniket Pant", style  = {"font-size": "14px"}
-                ),
+                html.A('GitHub', href='https://github.com/AniketPant02/art_embed', className = "lead"),
+                html.P("Author: Aniket Pant", className = "lead"),
             ]
     ),], style = {'margin-top': "4rem"}),
     html.Div([
@@ -172,4 +172,4 @@ def update_filename(clickData):
         return 'Selected image: {}'.format(filename)
 
 if __name__ == '__main__':
-    app.run(debug=False, host= '0.0.0.0', port = 8080)
+    app.run(debug=False, host= '0.0.0.0', port = 8050)
